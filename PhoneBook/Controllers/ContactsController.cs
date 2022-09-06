@@ -34,6 +34,7 @@ namespace PhoneBook.Controllers
         public static async Task Update()
         {
             dbContext = new PhoneBookDBContext();
+            await dbContext.SaveChangesAsync();
         }
         public static async Task DeleteContact(Contact contact)
         {

@@ -45,6 +45,7 @@ namespace PhoneBook
                         if (contact != null)
                         {
                             await ContactsController.DeleteContact(contact);
+                            Console.Clear();
                         }
                         else
                         {
@@ -53,7 +54,21 @@ namespace PhoneBook
 
                         break;
                     case "3":
-                        //change
+                        string selectedId = InputNotNull("Enter Id of contact that you want to delte: ");
+                        var contact1 = await ContactsController.GetContact(Int32.Parse(selectedId));
+                        if (contact1 != null)
+                        {
+                            contact1.Name = InputNotNull("Enter name: ");
+                            contact1.Surname = InputNotNull("Enter surname: ");
+                            contact1.PhoneNumber = InputNotNull("Enter phone number: ");
+                            contact1.EmailAdress = InputNotNull("Enter email: ");
+                            await ContactsController.Update();
+                            Console.Clear();
+                        }
+                        else
+                        {
+                            Console.WriteLine("Not Found");
+                        }
                         break;
                     default:
                         Console.Clear();
